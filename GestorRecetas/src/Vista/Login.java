@@ -1,6 +1,10 @@
 
 package Vista;
 
+import javax.swing.JOptionPane;
+
+import ControlRecetas.DataControl.ControlUsuario;
+
 /**
  *
  * @author jhair
@@ -183,12 +187,37 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String username = txtUserName.getText();
+        String password = new String(txtContrasena.getPassword());
+
+        try {
+            if (ControlUsuario.authenticateUser(username, password)) {
+                // Abre la página principal si el inicio de sesión es exitoso
+                JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                new HomePage().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        String username = txtUserName.getText();
+        String password = new String(txtContrasena.getPassword());
+
+        try {
+            if (ControlUsuario.registrarUsuario(username, password)) {
+                JOptionPane.showMessageDialog(this, "Registro exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al registrar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * @param args the command line arguments

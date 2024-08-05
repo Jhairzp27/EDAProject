@@ -2,6 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "GestorRecetas/AbsoluteLayout.jar",
-        "c:\\Users\\jhair\\Downloads\\librerias\\librerias\\AbsoluteLayout.jar"
+        "c:\\Users\\jhair\\Downloads\\librerias\\librerias\\AbsoluteLayout.jar",
+        "c:\\Users\\jhair\\OneDrive - Escuela Politécnica Nacional\\Personal-Projects\\LibJava\\sqlite-jdbc-3.40.0.0.jar",
+        "c:\\Users\\jhair\\OneDrive - Escuela Politécnica Nacional\\Personal-Projects\\Proyecto-final-grupo-4\\lib\\Util.jar"
     ]
 }
