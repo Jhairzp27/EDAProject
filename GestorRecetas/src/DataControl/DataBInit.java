@@ -2,8 +2,8 @@ package DataControl;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,7 +30,11 @@ public class DataBInit {
 
     private static void executeScript(String scriptPath, Connection connection) throws Exception {
         try {
-            String scriptContent = Files.readString(Paths.get(scriptPath));
+            Path path = Paths.get(scriptPath);
+            if (!Files.exists(path)) {
+                throw new IOException("El archivo de script no existe: " + scriptPath);
+            }
+            String scriptContent = Files.readString(path);
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate(scriptContent);
             }

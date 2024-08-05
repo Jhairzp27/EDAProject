@@ -1,9 +1,7 @@
 package DataControl;
 
 public class NewExceptio extends Exception {
-
-    public NewExceptio(String e, String clase, String metodo) {
-        System.out.println("[ERROR EN Recetario para el log] " + clase + "." + metodo + " : " + e);
+    public NewExceptio(String message, String className, String methodName) {
+        super("\n\nError in " + className + "." + methodName + ": " + message);
     }
-
 }
