@@ -1,4 +1,4 @@
-package ControlRecetas.DataControl;
+package DataControl;
 
 public class NewExceptio extends Exception {
 

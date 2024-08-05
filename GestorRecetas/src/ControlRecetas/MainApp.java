@@ -1,6 +1,6 @@
 
 package ControlRecetas;
-import ControlRecetas.DataControl.DataBInit;
+import DataControl.DataBInit;
 import Vista.Login;
 
 /**

@@ -1,4 +1,4 @@
-package ControlRecetas.DataControl;
+package DataControl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

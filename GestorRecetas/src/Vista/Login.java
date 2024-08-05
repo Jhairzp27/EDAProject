@@ -3,7 +3,7 @@ package Vista;
 
 import javax.swing.JOptionPane;
 
-import ControlRecetas.DataControl.ControlUsuario;
+import DataControl.ControlUsuario;
 
 /**
  *
