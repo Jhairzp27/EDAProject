@@ -6,4 +6,6 @@ Este proyecto de java trata de organizar, agregar, recetas para usuarios registr
 + **Árbol:** Para buscar recetas por ingredientes o categorías
 + **Cola:** Para gestionar una lista de compras de ingredientes necesarios para las recetas seleccionadas
 
-![Login](image.png)
+## Interfaz
+
+![alt text](Images/Login.png)
