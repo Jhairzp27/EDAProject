@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "GestorRecetas/AbsoluteLayout.jar",
+        "c:\\Users\\jhair\\Downloads\\librerias\\librerias\\AbsoluteLayout.jar"
+    ]
+}
