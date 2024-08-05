@@ -25,8 +25,8 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonAgregarReceta = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonRevisar = new javax.swing.JButton();
+        jButtonSeleccionar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -35,8 +35,9 @@ public class HomePage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonAgregarReceta.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonAgregarReceta.setBackground(new java.awt.Color(238, 229, 233));
         jButtonAgregarReceta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonAgregarReceta.setForeground(new java.awt.Color(2, 2, 2));
         jButtonAgregarReceta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Agregar.png"))); // NOI18N
         jButtonAgregarReceta.setText("Agregar");
         jButtonAgregarReceta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -47,30 +48,32 @@ public class HomePage extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 140, 31));
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/book-marked-fill.png"))); // NOI18N
-        jButton2.setText("Revisar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRevisar.setBackground(new java.awt.Color(238, 229, 233));
+        jButtonRevisar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonRevisar.setForeground(new java.awt.Color(2, 2, 2));
+        jButtonRevisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/book-marked-fill.png"))); // NOI18N
+        jButtonRevisar.setText("Revisar");
+        jButtonRevisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonRevisarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 140, 30));
+        getContentPane().add(jButtonRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 140, 30));
 
-        jButton3.setBackground(new java.awt.Color(102, 102, 102));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
-        jButton3.setText("Seleccionar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSeleccionar.setBackground(new java.awt.Color(238, 229, 233));
+        jButtonSeleccionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonSeleccionar.setForeground(new java.awt.Color(2, 2, 2));
+        jButtonSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
+        jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSeleccionarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 140, -1));
+        getContentPane().add(jButtonSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(238, 229, 233));
         jLabel2.setText("Bienvenido a RecetarYOU");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 440, 60));
 
@@ -83,13 +86,15 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
+        new SeleccionarReceta().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRevisarActionPerformed
+        new RevisarRecetas().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonRevisarActionPerformed
 
     private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
         new AgregarRecetas().setVisible(true);
@@ -132,9 +137,9 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAgregarReceta;
+    private javax.swing.JButton jButtonRevisar;
+    private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTabbedPane jTabbedPane1;
