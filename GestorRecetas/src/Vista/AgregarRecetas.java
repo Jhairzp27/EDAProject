@@ -1,14 +1,20 @@
 
 package Vista;
 
+import java.sql.SQLException;
+import javax.swing.JTextField;
+
 /**
  *
  * @author jhair
  */
 public class AgregarRecetas extends javax.swing.JFrame {
 
+    private final int userId;
+
     /** Creates new form AgregarRecetas */
-    public AgregarRecetas() {
+    public AgregarRecetas(int userId) {
+        this.userId = userId;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -26,15 +32,27 @@ public class AgregarRecetas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButtonHome = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonAgregarReceta = new javax.swing.JButton();
+        txtNombreReceta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel2.setText("AGREGA TU NUEVA RECETA");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 0, 330, 60));
 
-        jLabel3.setText("Nombre de receta");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 2, 2));
+        jLabel3.setText("NOMBRE DE LA RECETA:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 117, 230, 30));
 
+        jButtonHome.setBackground(new java.awt.Color(238, 229, 233));
+        jButtonHome.setForeground(new java.awt.Color(2, 2, 2));
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/home.png"))); // NOI18N
         jButtonHome.setText("Home");
         jButtonHome.addActionListener(new java.awt.event.ActionListener() {
@@ -42,35 +60,29 @@ public class AgregarRecetas extends javax.swing.JFrame {
                 jButtonHomeActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 27, 133, 33));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(234, 234, 234)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(429, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(57, 57, 57)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 463, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 2, 2));
+        jLabel1.setText("INGREDIENTES");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 140, 50));
+
+        jButtonAgregarReceta.setText("Agregar");
+        jButtonAgregarReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarRecetaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 130, 30));
+
+        txtNombreReceta.setBackground(new java.awt.Color(51, 51, 51));
+        txtNombreReceta.setForeground(new java.awt.Color(238, 229, 233));
+        txtNombreReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreRecetaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 410, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 620));
 
@@ -82,46 +94,28 @@ public class AgregarRecetas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgregarRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgregarRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgregarRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgregarRecetas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtNombreRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreRecetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreRecetaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarRecetas().setVisible(true);
-            }
-        });
-    }
+    private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
+        String nombreReceta = txtNombreReceta.getText();
+        try {
+            Controlers.RecetaControl.agregoReceta(userId, nombreReceta);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonAgregarRecetaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAgregarReceta;
     private javax.swing.JButton jButtonHome;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtNombreReceta;
     // End of variables declaration//GEN-END:variables
 
 }

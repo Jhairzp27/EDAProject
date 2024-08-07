@@ -1,4 +1,4 @@
-package DataControl;
+package Controlers;
 
 public class NewExceptio extends Exception {
     public NewExceptio(String message, String className, String methodName) {

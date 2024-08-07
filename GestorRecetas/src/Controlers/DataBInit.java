@@ -1,4 +1,4 @@
-package DataControl;
+package Controlers;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,7 +22,7 @@ public class DataBInit {
         }
 
         try (Connection connection = DriverManager.getConnection(DBUsuario)) {
-            executeScript("src/DataControl/Data.sql", connection);
+            executeScript("src/Controlers/Data.sql", connection);
         } catch (SQLException e) {
             throw new NewExceptio(e.getMessage(), DataBInit.class.getName(), "initializeDataBase()");
         }

@@ -1,9 +1,11 @@
 
 package Vista;
 
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
-import DataControl.ControlUsuario;
+import Controlers.ControlUsuario;
 
 /**
  *
@@ -36,8 +38,8 @@ public class Login extends javax.swing.JFrame {
         txtUserName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonIngresarPlataforma = new javax.swing.JButton();
+        jButtonRegistrarsePlataforma = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -76,19 +78,19 @@ public class Login extends javax.swing.JFrame {
         txtContrasena.setBackground(new java.awt.Color(51, 51, 51));
         txtContrasena.setForeground(new java.awt.Color(238, 229, 233));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIngresarPlataforma.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonIngresarPlataforma.setText("Ingresar");
+        jButtonIngresarPlataforma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonIngresarPlataformaActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("Registrarse");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistrarsePlataforma.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonRegistrarsePlataforma.setText("Registrarse");
+        jButtonRegistrarsePlataforma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonRegistrarsePlataformaActionPerformed(evt);
             }
         });
 
@@ -103,9 +105,9 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonIngresarPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonRegistrarsePlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
@@ -127,13 +129,13 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(jButtonIngresarPlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRegistrarsePlataforma, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 350, 400));
@@ -183,28 +185,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtUserNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButtonIngresarPlataformaActionPerformed(java.awt.event.ActionEvent evt) {                                         
         String username = txtUserName.getText();
         String password = new String(txtContrasena.getPassword());
 
         try {
-            if (ControlUsuario.authenticateUser(username, password)) {
-                // Abre la página principal si el inicio de sesión es exitoso
-                JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                new HomePage().setVisible(true);
+            int userId = ControlUsuario.authenticateUser(username, password);
+            if (userId != -1) {
+                // Pasa el userId a la ventana de agregar recetas
+                new AgregarRecetas(userId).setVisible(true);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                // Maneja la autenticación fallida (por ejemplo, muestra un mensaje de error)
+                JOptionPane.showMessageDialog(this, "Nombre de usuario o contraseña incorrectos.", "Error de autenticación", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButtonRegistrarsePlataformaActionPerformed(java.awt.event.ActionEvent evt) {                                         
         String username = txtUserName.getText();
         String password = new String(txtContrasena.getPassword());
 
@@ -255,8 +258,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonIngresarPlataforma;
+    private javax.swing.JButton jButtonRegistrarsePlataforma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
