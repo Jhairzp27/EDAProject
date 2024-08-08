@@ -16,11 +16,15 @@ public class HomePage extends javax.swing.JFrame {
         int userId1 = this.userId;
         initComponents();
         this.setLocationRelativeTo(null);
-        Controlers.UserSession sesion = UserSession.getInstance();
-        if(sesion != null){
-            //ACCEDER A LOS DATOS DEL USUARIO
+        
+         UserSession sesion = UserSession.getInstance();  // Corregido
+        if (sesion != null) {
+            // Acceder a los datos del usuario
             int userId = sesion.getUserId();
             String nombreUsuario = sesion.getUsername();
+        
+            // Mostrar mensaje de bienvenida
+        jLabelBienvenido.setText("Bienvenido, " + nombreUsuario + "!");
         }
     }
 
@@ -36,7 +40,7 @@ public class HomePage extends javax.swing.JFrame {
         jButtonAgregarReceta = new javax.swing.JButton();
         jButtonRevisar = new javax.swing.JButton();
         jButtonSeleccionar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelBienvenido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -81,10 +85,10 @@ public class HomePage extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 140, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(238, 229, 233));
-        jLabel2.setText("Bienvenido a RecetarYOU");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 440, 60));
+        jLabelBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabelBienvenido.setForeground(new java.awt.Color(238, 229, 233));
+        jLabelBienvenido.setText("Bienvenido a RecetarYOU");
+        getContentPane().add(jLabelBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 440, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/wallhaven-x6dq2d.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -106,7 +110,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRevisarActionPerformed
 
     private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
-        new AgregarRecetas(userId).setVisible(true);
+        new AgregarRecetas().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAgregarRecetaActionPerformed
 
@@ -116,7 +120,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRevisar;
     private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelBienvenido;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables

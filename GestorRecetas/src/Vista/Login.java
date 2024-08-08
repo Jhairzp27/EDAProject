@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import Controlers.ControlUsuario;
+import Controlers.UserSession;
 
 /**
  *
@@ -196,7 +197,9 @@ public class Login extends javax.swing.JFrame {
             int userId = ControlUsuario.authenticateUser(username, password);
             if (userId != -1) {
                 // Pasa el userId a la ventana de agregar recetas
-                new AgregarRecetas(userId).setVisible(true);
+                UserSession.setInstance(userId, username);
+                
+                new HomePage().setVisible(true);
                 this.dispose();
             } else {
                 // Maneja la autenticación fallida (por ejemplo, muestra un mensaje de error)

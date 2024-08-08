@@ -10,11 +10,9 @@ import javax.swing.JTextField;
  */
 public class AgregarRecetas extends javax.swing.JFrame {
 
-    private final int userId;
 
     /** Creates new form AgregarRecetas */
-    public AgregarRecetas(int userId) {
-        this.userId = userId;
+    public AgregarRecetas() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -101,6 +99,7 @@ public class AgregarRecetas extends javax.swing.JFrame {
     private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
         String nombreReceta = txtNombreReceta.getText();
         try {
+            int userId = Controlers.UserSession.getInstance().getUserId();
             Controlers.RecetaControl.agregoReceta(userId, nombreReceta);
         } catch (SQLException e) {
             e.printStackTrace();
