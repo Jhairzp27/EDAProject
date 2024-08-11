@@ -2,19 +2,42 @@
 package Vista;
 
 import java.sql.SQLException;
-import javax.swing.JTextField;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import Algoritmos.ListaSimple;
 
 /**
  *
  * @author jhair
  */
 public class AgregarRecetas extends javax.swing.JFrame {
-
-
+    
+    // Variable para almacenar el nombre de la receta
+    private String nombreRecetaActual;
+    DefaultTableModel modelo = new DefaultTableModel();
+    private javax.swing.table.DefaultTableModel tableModel;
+    
+    private ListaSimple listaRecetas;
+    
+    
+    
     /** Creates new form AgregarRecetas */
     public AgregarRecetas() {
+        
         initComponents();
+        
+        listaRecetas = new ListaSimple();
+        
         this.setLocationRelativeTo(null);
+        //nombreRecetaActual = "";
+        tableModel = new DefaultTableModel(
+                new Object[][]{},
+                new String[]{"Ingrediente", "Cantidad"}
+        );
+        jTableIngredientes.setModel(tableModel);
+        
     }
 
     /** This method is called from within the constructor to
@@ -31,8 +54,12 @@ public class AgregarRecetas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButtonHome = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonAgregarReceta = new javax.swing.JButton();
-        txtNombreReceta = new javax.swing.JTextField();
+        txtNombreIngrediente = new javax.swing.JTextField();
+        txtNombreReceta1 = new javax.swing.JTextField();
+        jSpinnerCantidad = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableIngredientes = new javax.swing.JTable();
+        jButtonAgregarRecetaCompleta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,7 +74,7 @@ public class AgregarRecetas extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(2, 2, 2));
         jLabel3.setText("NOMBRE DE LA RECETA:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 117, 230, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 230, 30));
 
         jButtonHome.setBackground(new java.awt.Color(238, 229, 233));
         jButtonHome.setForeground(new java.awt.Color(2, 2, 2));
@@ -62,25 +89,55 @@ public class AgregarRecetas extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 2, 2));
-        jLabel1.setText("INGREDIENTES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 140, 50));
+        jLabel1.setText("INGREDIENTES:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 140, 40));
 
-        jButtonAgregarReceta.setText("Agregar");
-        jButtonAgregarReceta.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreIngrediente.setBackground(new java.awt.Color(51, 51, 51));
+        txtNombreIngrediente.setForeground(new java.awt.Color(238, 229, 233));
+        txtNombreIngrediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAgregarRecetaActionPerformed(evt);
+                txtNombreIngredienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 130, 30));
+        jPanel1.add(txtNombreIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 220, 30));
 
-        txtNombreReceta.setBackground(new java.awt.Color(51, 51, 51));
-        txtNombreReceta.setForeground(new java.awt.Color(238, 229, 233));
-        txtNombreReceta.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreReceta1.setBackground(new java.awt.Color(51, 51, 51));
+        txtNombreReceta1.setForeground(new java.awt.Color(238, 229, 233));
+        txtNombreReceta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreRecetaActionPerformed(evt);
+                txtNombreReceta1ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 410, 30));
+        jPanel1.add(txtNombreReceta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 410, 30));
+
+        jSpinnerCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
+        jPanel1.add(jSpinnerCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 100, 30));
+
+        jTableIngredientes.setBackground(new java.awt.Color(238, 229, 233));
+        jTableIngredientes.setForeground(new java.awt.Color(2, 2, 2));
+        jTableIngredientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableIngredientes);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 320, 480, 300));
+
+        jButtonAgregarRecetaCompleta.setBackground(new java.awt.Color(238, 229, 233));
+        jButtonAgregarRecetaCompleta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/AgregarIcon2.png"))); // NOI18N
+        jButtonAgregarRecetaCompleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarRecetaCompletaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonAgregarRecetaCompleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 440, 90, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 620));
 
@@ -92,29 +149,115 @@ public class AgregarRecetas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
-    private void txtNombreRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreRecetaActionPerformed
+    private void txtNombreIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreIngredienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreRecetaActionPerformed
+    }//GEN-LAST:event_txtNombreIngredienteActionPerformed
 
-    private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
-        String nombreReceta = txtNombreReceta.getText();
+    private void txtNombreReceta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreReceta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreReceta1ActionPerformed
+
+    private void jButtonAgregarRecetaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaCompletaActionPerformed
+        String nombreReceta = txtNombreReceta1.getText();
+        String nombreIngrediente = txtNombreIngrediente.getText();
+        int cantidad = (Integer) jSpinnerCantidad.getValue();
+        
         try {
             int userId = Controlers.UserSession.getInstance().getUserId();
-            Controlers.RecetaControl.agregoReceta(userId, nombreReceta);
+            
+            // Verificar si la receta ya existe
+            int idReceta = Controlers.RecetaControl.getRecipeId(nombreReceta, userId);
+            
+            if (idReceta == -1) { // Si no existe, la creamos
+                Controlers.RecetaControl.agregoReceta(userId, nombreReceta);
+                JOptionPane.showMessageDialog(this, "Se ha agregado la receta con éxito!");
+                
+                // Obtener el ID de la receta recién creada
+                idReceta = Controlers.RecetaControl.getRecipeId(nombreReceta, userId);
+                nombreRecetaActual = nombreReceta; // Actualizamos el nombre de la receta actual
+            }
+        
+            // Agregar el ingrediente a la receta existente
+            Controlers.RecetaControl.agregarIngrediente(idReceta, nombreIngrediente, String.valueOf(cantidad));
+            JOptionPane.showMessageDialog(this, "Ingrediente agregado con éxito a la receta!");
+            
+            // Limpiar los campos después de agregar el ingrediente
+            txtNombreIngrediente.setText("");
+            jSpinnerCantidad.setValue(1);
+            
+            // Actualizar la tabla con el nuevo ingrediente
+            tableModel.addRow(new Object[]{nombreIngrediente, cantidad});
+            
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al registrar receta o agregar ingrediente!");
         }
-    }//GEN-LAST:event_jButtonAgregarRecetaActionPerformed
+        
+        
+        
+        // Muestra un mensaje de confirmación
+        //javax.swing.JOptionPane.showMessageDialog(this, "Receta guardada con éxito");
+        }                                        
+
+    // private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    //     // Obtiene la lista de recetas en formato String
+    // String lista = listaRecetas.obtenerListaRecetas();
+    
+    // // Muestra la lista en el área de texto
+    // //jTextArea1.setText(lista);
+    // }//GEN-LAST:event_jButtonAgregarRecetaCompletaActionPerformed
+
+    // private void jButtonAddIngredienteActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+    //     String nombreIngrediente = txtNombreIngrediente.getText();
+    //     int cantidad = (Integer) jSpinnerCantidad.getValue();
+        
+    //     try {
+    //         int userId = Controlers.UserSession.getInstance().getUserId();
+            
+    //         // Usar la variable global que guarda el nombre de la receta
+    //         if (!nombreRecetaActual.isEmpty()) {
+    //             int idReceta = Controlers.RecetaControl.getRecipeId(nombreRecetaActual, userId);
+            
+    //             if (idReceta != -1) {
+    //                 Controlers.RecetaControl.agregarIngrediente(idReceta, nombreIngrediente, String.valueOf(cantidad));
+    //                 JOptionPane.showMessageDialog(this, "Ingrediente agregado con éxito a la receta!");
+                    
+    //                 // Limpiar los campos después de agregar el ingrediente
+    //                 //txtNombreIngrediente.setText("");
+    //                 jSpinnerCantidad.setValue(1);
+                    
+    //                 // (Opcional) Actualizar la tabla de ingredientes si la usas
+    //                 tableModel.addRow(new Object[]{nombreIngrediente, cantidad});
+    //             } else {
+    //                 JOptionPane.showMessageDialog(this, "No se encontró la receta. Asegúrate de agregarla primero.");
+    //             }
+    //         } else {
+    //             JOptionPane.showMessageDialog(this, "Primero debes agregar una receta.");
+    //         }
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //         JOptionPane.showMessageDialog(this, "Error al agregar el ingrediente a la receta.");
+    //     }
+    
+    // }                                                     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAgregarReceta;
+    private javax.swing.JButton jButtonAgregarRecetaCompleta;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtNombreReceta;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinnerCantidad;
+    private javax.swing.JTable jTableIngredientes;
+    private javax.swing.JTextField txtNombreIngrediente;
+    private javax.swing.JTextField txtNombreReceta1;
     // End of variables declaration//GEN-END:variables
+
+    private void actualizarTabla() {
+        jTableIngredientes.setModel(modelo);
+    }
 
 }
