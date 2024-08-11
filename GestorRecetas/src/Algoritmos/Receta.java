@@ -13,20 +13,17 @@ public class Receta {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(String ingredientes) {
-        this.ingredientes = ingredientes;
-    }
 
     @Override
     public String toString() {
         return nombre + ": " + ingredientes;
+    }
+
+    public void setIngredientes(String text) {
+        this.ingredientes = text;
     }
 }

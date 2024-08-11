@@ -12,6 +12,9 @@ public class Nodo {
     public Receta getReceta() {
         return receta;
     }
+    public void setReceta(Receta receta) {
+        this.receta = receta;
+    }
 
     public Nodo getSiguiente() {
         return siguiente;
@@ -20,4 +23,6 @@ public class Nodo {
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
+
+    
 }

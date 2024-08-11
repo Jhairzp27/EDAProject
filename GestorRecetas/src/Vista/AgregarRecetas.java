@@ -22,7 +22,6 @@ public class AgregarRecetas extends javax.swing.JFrame {
     private ListaSimple listaRecetas;
     
     
-    
     /** Creates new form AgregarRecetas */
     public AgregarRecetas() {
         
@@ -158,6 +157,7 @@ public class AgregarRecetas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreReceta1ActionPerformed
 
     private void jButtonAgregarRecetaCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaCompletaActionPerformed
+        
         String nombreReceta = txtNombreReceta1.getText();
         String nombreIngrediente = txtNombreIngrediente.getText();
         int cantidad = (Integer) jSpinnerCantidad.getValue();
