@@ -77,7 +77,7 @@ public class HomePage extends javax.swing.JFrame {
         jButtonSeleccionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonSeleccionar.setForeground(new java.awt.Color(2, 2, 2));
         jButtonSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
-        jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.setText("Pedidos");
         jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSeleccionarActionPerformed(evt);
@@ -100,7 +100,7 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
-        new SeleccionarReceta().setVisible(true);
+        new GestorPedidos().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
