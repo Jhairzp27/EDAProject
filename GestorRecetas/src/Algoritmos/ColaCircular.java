@@ -3,61 +3,92 @@ package Algoritmos;
 import javax.swing.JOptionPane;
 
 public class ColaCircular {
-
     private Pedido[] cola;
-    private int frente = -1;
-    private int fin = -1;
+    private int frente;
+    private int fin;
+    private int tamaño;
 
-    public ColaCircular(int dimension) {
-        this.cola = new Pedido[dimension];
+    public ColaCircular(int capacidad) {
+        cola = new Pedido[capacidad];
+        frente = -1;
+        fin = -1;
+        tamaño = capacidad;
+    }
+
+    public boolean estaLlena() {
+        return (frente == 0 && fin == tamaño - 1) || (fin + 1 == frente);
+    }
+
+    public boolean estaVacia() {
+        return frente == -1;
     }
 
     public void agregarPedido(Pedido pedido) {
-        if ((this.frente == 0 && this.fin + 1 == this.cola.length) || (this.fin + 1 == this.frente)) {
-            JOptionPane.showMessageDialog(null, "Cola llena\nNo se pueden agregar más pedidos.");
-        } else {
-            if (this.frente == -1) {
-                this.fin = 0;
-                this.frente = 0;
-            } else if (this.fin + 1 == this.cola.length) {
-                this.fin = 0;
-            } else {
-                this.fin++;
-            }
-            this.cola[this.fin] = pedido;
+        if (estaLlena()) {
+            JOptionPane.showMessageDialog(null, "La cola está llena, no se puede agregar el pedido.");       
+            return;
         }
+
+        if (frente == -1) {
+            frente = 0;
+        }
+
+        fin = (fin + 1) % tamaño;
+        cola[fin] = pedido;
     }
 
     public Pedido procesarPedido() {
-        if (this.frente == -1) {
-            JOptionPane.showMessageDialog(null, "Cola vacía\nNo hay pedidos pendientes.");
+        if (estaVacia()) {
+            JOptionPane.showMessageDialog(null, "La cola está vacía, no hay pedidos para procesar.");
             return null;
-        } else {
-            Pedido pedidoProcesado = this.cola[this.frente];
-            if (this.frente == this.fin) {
-                this.frente = -1;
-                this.fin = -1;
-            } else if (this.frente + 1 == this.cola.length) {
-                this.frente = 0;
-            } else {
-                this.frente++;
-            }
-            return pedidoProcesado;
         }
+
+        Pedido pedidoProcesado = cola[frente];
+
+        if (frente == fin) {
+            frente = -1;
+            fin = -1;
+        } else {
+            frente = (frente + 1) % tamaño;
+        }
+
+        return pedidoProcesado;
+    }
+
+    public Pedido[] getPedidos() {
+        Pedido[] pedidosActuales = new Pedido[tamaño];
+        if (estaVacia()) {
+            return pedidosActuales;
+        }
+
+        int i = frente;
+        int index = 0;
+        while (true) {
+            pedidosActuales[index++] = cola[i];
+            if (i == fin) {
+                break;
+            }
+            i = (i + 1) % tamaño;
+        }
+
+        return pedidosActuales;
     }
 
     public String mostrarPedidos() {
-        StringBuilder salida = new StringBuilder();
-        if (frente == -1) {
-            salida.append("No hay pedidos pendientes.");
-        } else {
-            int i = frente;
-            while (true) {
-                salida.append(this.cola[i].toString()).append("\n");
-                if (i == fin) break;
-                i = (i + 1) % this.cola.length;
-            }
+        if (estaVacia()) {
+            return "No hay pedidos en la cola.";
         }
-        return salida.toString();
+
+        StringBuilder sb = new StringBuilder();
+        int i = frente;
+        while (true) {
+            sb.append(cola[i].toString()).append("\n");
+            if (i == fin) {
+                break;
+            }
+            i = (i + 1) % tamaño;
+        }
+
+        return sb.toString();
     }
 }

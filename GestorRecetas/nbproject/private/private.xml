@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jhair/OneDrive%20-%20Escuela%20Politécnica%20Nacional/EPN/TERCER%20SEMESTRE/EDA/ProyectoEDA/NetProject/EDAProject/GestorRecetas/src/Vista/AgregarRecetas.java</file>
-            <file>file:/C:/Users/jhair/OneDrive%20-%20Escuela%20Politécnica%20Nacional/EPN/TERCER%20SEMESTRE/EDA/ProyectoEDA/NetProject/EDAProject/GestorRecetas/src/Algoritmos/ListaSimple.java</file>
-            <file>file:/C:/Users/jhair/OneDrive%20-%20Escuela%20Politécnica%20Nacional/EPN/TERCER%20SEMESTRE/EDA/ProyectoEDA/NetProject/EDAProject/GestorRecetas/src/Algoritmos/Nodo.java</file>
-            <file>file:/C:/Users/jhair/OneDrive%20-%20Escuela%20Politécnica%20Nacional/EPN/TERCER%20SEMESTRE/EDA/ProyectoEDA/NetProject/EDAProject/GestorRecetas/src/Algoritmos/Receta.java</file>
-            <file>file:/C:/Users/jhair/OneDrive%20-%20Escuela%20Politécnica%20Nacional/EPN/TERCER%20SEMESTRE/EDA/ProyectoEDA/NetProject/EDAProject/GestorRecetas/src/Main/MainApp.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Vista/GestorPedidos.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Vista/RevisarRecetas.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Vista/GestorRecetas.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Algoritmos/ColaCircular.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Algoritmos/Busqueda.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Algoritmos/Pedido.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Vista/Login.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Vista/HomePage.java</file>
+            <file>file:/C:/Users/adict/OneDrive/Documentos/NetBeansProjects/EDAProject/GestorRecetas/src/Algoritmos/Ordenamiento.java</file>
         </group>
     </open-files>
 </project-private>

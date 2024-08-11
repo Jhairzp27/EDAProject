@@ -149,7 +149,7 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonOrdenarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 100, 30));
+        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 90, 30));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/home.png"))); // NOI18N
