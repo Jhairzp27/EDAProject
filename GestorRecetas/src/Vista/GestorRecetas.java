@@ -46,6 +46,7 @@ public class GestorRecetas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         botonOrdenar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         FondoRecetas = new javax.swing.JLabel();
         botonModificar = new javax.swing.JButton();
 
@@ -53,15 +54,13 @@ public class GestorRecetas extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 102, -1, -1));
+        jLabel1.setText("Nombre");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingredientes:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 150, -1));
+        jLabel2.setText("Ingredientes");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 150, -1));
 
         botonIngresar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         botonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Agregar.png"))); // NOI18N
@@ -71,7 +70,7 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
+        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         botonMostrar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         botonMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/book-marked-fill.png"))); // NOI18N
@@ -81,7 +80,7 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonMostrarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        getContentPane().add(botonMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
         botonBuscar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
@@ -91,11 +90,31 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -115,23 +134,34 @@ public class GestorRecetas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, 350));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, 350));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
 
+        botonOrdenar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         botonOrdenar.setText("Ordenar");
         botonOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonOrdenarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 100, 30));
+        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 100, 30));
 
-        FondoRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/wallhaven-x6dq2d.jpg"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/home.png"))); // NOI18N
+        jButton1.setText("Home");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        FondoRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/recetas.jpg"))); // NOI18N
         FondoRecetas.setText("jLabel3");
         getContentPane().add(FondoRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 530));
 
@@ -222,6 +252,11 @@ public class GestorRecetas extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_botonModificarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new HomePage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,6 +300,7 @@ public class GestorRecetas extends javax.swing.JFrame {
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonOrdenar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

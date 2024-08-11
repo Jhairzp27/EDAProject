@@ -110,7 +110,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRevisarActionPerformed
 
     private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
-        new AgregarRecetas().setVisible(true);
+        new GestorRecetas().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAgregarRecetaActionPerformed
 
