@@ -22,6 +22,7 @@ public class GestorRecetas extends javax.swing.JFrame {
     
     public GestorRecetas() {
         initComponents();
+        this.setLocationRelativeTo(null);
         listaRecetas = new ListaSimple();
        
     }
@@ -159,7 +160,7 @@ public class GestorRecetas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         FondoRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/recetas.jpg"))); // NOI18N
         FondoRecetas.setText("jLabel3");
@@ -233,13 +234,13 @@ public class GestorRecetas extends javax.swing.JFrame {
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
         // Carga las recetas en la tabla
-    cargarRecetasEnTabla();
+        cargarRecetasEnTabla();
     }//GEN-LAST:event_botonMostrarActionPerformed
 
     private void botonOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrdenarActionPerformed
-     listaRecetas.ordenarRecetasPorNombre();
-    // Actualiza la tabla después de ordenar
-    cargarRecetasEnTabla();
+        listaRecetas.ordenarRecetasPorNombre();
+        // Actualiza la tabla después de ordenar
+        cargarRecetasEnTabla();
     }//GEN-LAST:event_botonOrdenarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
@@ -247,9 +248,9 @@ public class GestorRecetas extends javax.swing.JFrame {
         receta.setIngredientes(jTextArea1.getText());
         javax.swing.JOptionPane.showMessageDialog(this, "Ingredientes actualizados con éxito");
         cargarRecetasEnTabla();  // Actualiza la tabla para reflejar los cambios
-    } else {
+        } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Primero busque una receta para modificar");
-    }
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

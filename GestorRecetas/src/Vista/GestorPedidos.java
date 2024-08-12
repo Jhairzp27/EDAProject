@@ -23,6 +23,7 @@ public class GestorPedidos extends javax.swing.JFrame {
     
     public GestorPedidos() {
         initComponents();
+        this.setLocationRelativeTo(null);
         colaPedidos = new ColaCircular(5); // Tamaño de la cola
         cargarPedidosEnTabla();
     }
