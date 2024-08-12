@@ -41,10 +41,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
-                  <Component id="jButtonHome" min="-2" pref="141" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="454" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
+                          <Component id="jButtonHome" min="-2" pref="141" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                          <Component id="jLabelMostrarRecetas" min="-2" pref="454" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jButtonMostrarRecetas" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace pref="384" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -54,16 +62,18 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="jLabelMostrarRecetas" alignment="3" min="-2" pref="77" max="-2" attributes="0"/>
                       <Component id="jButtonHome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="520" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+                  <Component id="jButtonMostrarRecetas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="390" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jLabelMostrarRecetas">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e9" green="e5" red="ee" type="rgb"/>
@@ -79,6 +89,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="SUS RECETAS:"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelMostrarRecetasMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonHome">
           <Properties>
@@ -95,6 +108,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHomeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonMostrarRecetas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jButton1"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMostrarRecetasActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

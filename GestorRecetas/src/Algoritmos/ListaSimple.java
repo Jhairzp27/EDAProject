@@ -12,12 +12,12 @@ public class ListaSimple {
     Nodo temp = cabeza;
     while (temp != null) {
         if (temp.getReceta().getNombre().equalsIgnoreCase(nombre)) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Receta encontrada");
+            //javax.swing.JOptionPane.showMessageDialog(null, "Receta encontrada en la lista");
             return temp.getReceta();
         }
         temp = temp.getSiguiente();
     }
-    javax.swing.JOptionPane.showMessageDialog(null, "Receta no encontrada");
+    //javax.swing.JOptionPane.showMessageDialog(null, "Receta no encontrada");
     return null;
 }
 

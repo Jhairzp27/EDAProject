@@ -32,4 +32,8 @@ public class Receta {
     public void setIngredientes(String text) {
         this.ingredientes = text;
     }
+
+    public void setCantidad(Integer cantidad){
+        this.cantidad = cantidad;
+    }
 }

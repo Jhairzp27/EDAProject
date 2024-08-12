@@ -13,8 +13,8 @@ public class RecetaControl {
             preparedStatement.setInt(1, userId);
             preparedStatement.setString(2, nombreReceta);
             int rowsAffected = preparedStatement.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
-            System.out.println(userId);
+            //System.out.println("Rows affected: " + rowsAffected);
+            //System.out.println(userId);
         }
     }
 
@@ -26,7 +26,7 @@ public class RecetaControl {
             preparedStatement.setString(2, nombreIngrediente);
             preparedStatement.setString(3, cantidad);
             int rowsAffected = preparedStatement.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected);
+            //System.out.println("Rows affected: " + rowsAffected);
         }
     }
 

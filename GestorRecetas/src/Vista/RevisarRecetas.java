@@ -1,18 +1,32 @@
 
 package Vista;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Controlers.DataBInit;
+import Controlers.UserSession;
+
 /**
  *
  * @author jhair
  */
 public class RevisarRecetas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RevisarRecetas
-     */
+    private JPanel panelRecetas;
+        
     public RevisarRecetas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        panelRecetas = new JPanel();
+        panelRecetas.setBackground(new java.awt.Color(51,51,51));
+        getContentPane().add(panelRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 1000, 400));
+        loadRecetas();
     }
 
     /**
@@ -25,19 +39,25 @@ public class RevisarRecetas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelMostrarRecetas = new javax.swing.JLabel();
         jButtonHome = new javax.swing.JButton();
+        jButtonMostrarRecetas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel1.setBackground(new java.awt.Color(238, 229, 233));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(238, 229, 233));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/article-line.png"))); // NOI18N
-        jLabel1.setText("SUS RECETAS:");
+        jLabelMostrarRecetas.setBackground(new java.awt.Color(238, 229, 233));
+        jLabelMostrarRecetas.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        jLabelMostrarRecetas.setForeground(new java.awt.Color(238, 229, 233));
+        jLabelMostrarRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/article-line.png"))); // NOI18N
+        jLabelMostrarRecetas.setText("SUS RECETAS:");
+        jLabelMostrarRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelMostrarRecetasMouseClicked(evt);
+            }
+        });
 
         jButtonHome.setBackground(new java.awt.Color(238, 229, 233));
         jButtonHome.setForeground(new java.awt.Color(2, 2, 2));
@@ -49,15 +69,27 @@ public class RevisarRecetas extends javax.swing.JFrame {
             }
         });
 
+        jButtonMostrarRecetas.setText("jButton1");
+        jButtonMostrarRecetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarRecetasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabelMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jButtonMostrarRecetas)))
                 .addContainerGap(384, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -65,9 +97,11 @@ public class RevisarRecetas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonHome))
-                .addContainerGap(520, Short.MAX_VALUE))
+                .addGap(107, 107, 107)
+                .addComponent(jButtonMostrarRecetas)
+                .addContainerGap(390, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 620));
@@ -79,6 +113,14 @@ public class RevisarRecetas extends javax.swing.JFrame {
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jLabelMostrarRecetasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMostrarRecetasMouseClicked
+        loadRecetas();
+    }//GEN-LAST:event_jLabelMostrarRecetasMouseClicked
+
+    private void jButtonMostrarRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarRecetasActionPerformed
+        loadRecetas();
+    }//GEN-LAST:event_jButtonMostrarRecetasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,11 +155,70 @@ public class RevisarRecetas extends javax.swing.JFrame {
                 new RevisarRecetas().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonHome;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonMostrarRecetas;
+    private javax.swing.JLabel jLabelMostrarRecetas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void loadRecetas() {
+        panelRecetas.removeAll(); // Limpiar el panel antes de agregar nuevos botones
+        int userId = UserSession.getInstance().getUserId(); // Obtener el userId desde la sesión
+
+        try (Connection conn = DataBInit.connect()) {
+            String query = "SELECT IdReceta, NombreReceta FROM Recetas WHERE IdUser = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String recetaNombre = rs.getString("NombreReceta");
+                int recetaId = rs.getInt("IdReceta");
+
+                // Crear JLabel con imagen
+            JLabel recetaLabel = new JLabel();
+            recetaLabel.setText(recetaNombre);
+            recetaLabel.setHorizontalTextPosition(JLabel.CENTER);
+            recetaLabel.setVerticalTextPosition(JLabel.BOTTOM);
+            recetaLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/timeline-view.png"))); // Ruta relativa a la imagen
+            recetaLabel.setPreferredSize(new java.awt.Dimension(96, 96));
+            
+                recetaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    mostrarIngredientes(recetaId);
+                }
+            });
+
+                panelRecetas.add(recetaLabel);
+            }
+            panelRecetas.revalidate();
+            panelRecetas.repaint();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+     private void mostrarIngredientes(int recetaId) {
+        try (Connection conn = DataBInit.connect()) {
+            String query = "SELECT NombreIngrediente, Cantidad FROM Ingredientes WHERE IdReceta = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, recetaId);
+            ResultSet rs = pstmt.executeQuery();
+
+            StringBuilder ingredientesInfo = new StringBuilder();
+            while (rs.next()) {
+                String nombre = rs.getString("NombreIngrediente");
+                String cantidad = rs.getString("Cantidad");
+                ingredientesInfo.append(nombre).append(": ").append(cantidad).append("\n");
+            }
+
+            javax.swing.JOptionPane.showMessageDialog(this, ingredientesInfo.toString(), "Ingredientes", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    }
