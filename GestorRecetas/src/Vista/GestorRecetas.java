@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
+
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 
 import Algoritmos.ListaSimple;
 import Algoritmos.Nodo;
@@ -38,7 +39,10 @@ public class GestorRecetas extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldNombReceta = new javax.swing.JTextField();
+        jTextFieldNombIngredientes = new javax.swing.JTextField();
+        jSpinnerCantidad = new javax.swing.JSpinner();
         botonIngresar = new javax.swing.JButton();
         botonMostrar = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
@@ -55,15 +59,31 @@ public class GestorRecetas extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jLabel1.setText("Nombre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        jLabel1.setText("Nombre de receta");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
         jLabel2.setText("Ingredientes");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 150, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setText("Cantidad");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, 70, 20));
+
+        jTextFieldNombReceta.setBackground(new java.awt.Color(238, 229, 233));
+        jTextFieldNombReceta.setForeground(new java.awt.Color(2, 2, 2));
+        getContentPane().add(jTextFieldNombReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 150, -1));
+
+        jTextFieldNombIngredientes.setBackground(new java.awt.Color(238, 229, 233));
+        jTextFieldNombIngredientes.setForeground(new java.awt.Color(2, 2, 2));
+        getContentPane().add(jTextFieldNombIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 160, 20));
+
+        jSpinnerCantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        getContentPane().add(jSpinnerCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 120, -1, -1));
+
+        botonIngresar.setBackground(new java.awt.Color(238, 229, 233));
         botonIngresar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        botonIngresar.setForeground(new java.awt.Color(2, 2, 2));
         botonIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Agregar.png"))); // NOI18N
         botonIngresar.setText("Ingresar");
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,9 +91,11 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        getContentPane().add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, -1, -1));
 
+        botonMostrar.setBackground(new java.awt.Color(238, 229, 233));
         botonMostrar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        botonMostrar.setForeground(new java.awt.Color(2, 2, 2));
         botonMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/book-marked-fill.png"))); // NOI18N
         botonMostrar.setText("Mostrar");
         botonMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,52 +103,56 @@ public class GestorRecetas extends javax.swing.JFrame {
                 botonMostrarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+        getContentPane().add(botonMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
+        botonBuscar.setBackground(new java.awt.Color(238, 229, 233));
         botonBuscar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
-        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(2, 2, 2));
+        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/BuscarImage.png"))); // NOI18N
         botonBuscar.setText("Buscar");
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+        getContentPane().add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
 
+        jTable1.setBackground(new java.awt.Color(238, 229, 233));
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(2, 2, 2));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "Ingredientes"
+                "Receta", "Ingredientes", "Cantidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -135,24 +161,31 @@ public class GestorRecetas extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, 350));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, -1, 210));
 
+        jTextArea1.setBackground(new java.awt.Color(238, 229, 233));
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(2, 2, 2));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
+        botonOrdenar.setBackground(new java.awt.Color(238, 229, 233));
         botonOrdenar.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        botonOrdenar.setForeground(new java.awt.Color(2, 2, 2));
+        botonOrdenar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/seleccionar.png"))); // NOI18N
         botonOrdenar.setText("Ordenar");
         botonOrdenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonOrdenarActionPerformed(evt);
             }
         });
-        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 90, 30));
+        getContentPane().add(botonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 120, 30));
 
+        jButton1.setBackground(new java.awt.Color(238, 229, 233));
         jButton1.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(2, 2, 2));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/home.png"))); // NOI18N
         jButton1.setText("Home");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -179,19 +212,20 @@ public class GestorRecetas extends javax.swing.JFrame {
     
     private void cargarRecetasEnTabla() {
         String[][] datos = obtenerDatosRecetas();
-        String[] columnas = {"Nombre", "Ingredientes"};
+        String[] columnas = {"Recetas","Ingredientes", "Cantidad"};
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(datos, columnas);
         jTable1.setModel(model);
     }
     private String[][] obtenerDatosRecetas() {
         int cantidadRecetas = listaRecetas.contarRecetas();
-        String[][] datos = new String[cantidadRecetas][2];
+        String[][] datos = new String[cantidadRecetas][3];
 
         Nodo temp = listaRecetas.getCabeza();
         int i = 0;
         while (temp != null) {
             datos[i][0] = temp.getReceta().getNombre();
             datos[i][1] = temp.getReceta().getIngredientes();
+            datos[i][2] = temp.getReceta().getCantidad().toString();
             temp = temp.getSiguiente();
             i++;
         }
@@ -199,36 +233,68 @@ public class GestorRecetas extends javax.swing.JFrame {
     }
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // Obtiene los valores de los campos de texto
-    String nombre = jTextField1.getText();
-    String ingredientes = jTextArea1.getText();
-
-    // Crea una nueva receta y la agrega a la lista
-    Algoritmos.Receta nuevaReceta = new Algoritmos.Receta(nombre, ingredientes);
-    listaRecetas.agregarReceta(nuevaReceta);
-
-    // Muestra un mensaje de confirmación
-    javax.swing.JOptionPane.showMessageDialog(this, "Receta guardada con éxito");
-
-    // Limpia los campos de texto
-    jTextField1.setText("");
-    jTextArea1.setText("");
-
-    // Actualiza la tabla para mostrar la nueva receta
-    cargarRecetasEnTabla();
+        String nombre = jTextFieldNombReceta.getText();
+        String ingredientes = jTextArea1.getText();//PRIMER AREA
+        
+        String nombreIngrediente = jTextFieldNombIngredientes.getText();
+        int cantidadIngredientes = (Integer) jSpinnerCantidad.getValue();
+        
+        
+        // Crea una nueva receta y la agrega a la LISTA
+        Algoritmos.Receta nuevaReceta = new Algoritmos.Receta(nombre, nombreIngrediente, cantidadIngredientes);
+        listaRecetas.agregarReceta(nuevaReceta);
+        
+        // CONTROL DE BASE DE DATOS
+        try {
+            int userId = Controlers.UserSession.getInstance().getUserId();
+            
+            // Verificar si la receta ya existe en la base de datos
+            int idReceta = Controlers.RecetaControl.getRecipeId(nombre, userId);
+            
+            if (idReceta == -1) { // Si no existe, la creamos
+                Controlers.RecetaControl.agregoReceta(userId, nombre);
+                JOptionPane.showMessageDialog(this, "Se ha agregado la receta con éxito a la base de datos!");
+                
+                // Obtener el ID de la receta recién creada para futuros usos si es necesario
+                idReceta = Controlers.RecetaControl.getRecipeId(nombre, userId);
+            } else {
+                JOptionPane.showMessageDialog(this, "La receta ya existe en la base de datos.");
+            }
+            //AGREGO INGREDIENTE A LA RECETA EN LA BASE DE DATOS
+            Controlers.RecetaControl.agregarIngrediente(idReceta, nombreIngrediente, String.valueOf(cantidadIngredientes));
+            JOptionPane.showMessageDialog(this, "Ingrediente agregado con éxito a la receta!");
+            // Limpiar los campos después de agregar el ingrediente
+            jTextFieldNombIngredientes.setText("");
+            jSpinnerCantidad.setValue(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al registrar la receta en la base de datos!");
+        }
+        
+        
+        // Muestra un mensaje de confirmación
+        javax.swing.JOptionPane.showMessageDialog(this, "Receta guardada con éxito");
+    
+        // Limpia los campos de texto
+        //jTextField1.setText("");
+        //jTextArea1.setText("");
+    
+        // Actualiza la tabla para mostrar la nueva receta (si es necesario)
+        cargarRecetasEnTabla();
     }//GEN-LAST:event_botonIngresarActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        String nombre = jTextField1.getText();
-     receta = listaRecetas.buscarReceta(nombre);  // Asigna la receta encontrada a la variable 'receta'
+        String nombre = jTextFieldNombReceta.getText();
+        receta = listaRecetas.buscarReceta(nombre);  // Asigna la receta encontrada a la variable 'receta'
 
-     if (receta != null) {
-         jTextField1.setText(receta.getNombre());
-         jTextArea1.setText(receta.getIngredientes());
-     } else {
-         javax.swing.JOptionPane.showMessageDialog(this, "Receta no encontrada");
-         jTextField1.setText("");
-         jTextArea1.setText("");
-     }
+        if (receta != null) {
+            jTextFieldNombReceta.setText(receta.getNombre());
+            jTextFieldNombIngredientes.setText(receta.getIngredientes());
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Receta no encontrada");
+            jTextFieldNombReceta.setText("");
+            jTextFieldNombIngredientes.setText("");
+        }
      
     }//GEN-LAST:event_botonBuscarActionPerformed
 
@@ -245,7 +311,7 @@ public class GestorRecetas extends javax.swing.JFrame {
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         if (receta != null) {
-        receta.setIngredientes(jTextArea1.getText());
+        receta.setIngredientes(jTextFieldNombIngredientes.getText());
         javax.swing.JOptionPane.showMessageDialog(this, "Ingredientes actualizados con éxito");
         cargarRecetasEnTabla();  // Actualiza la tabla para reflejar los cambios
         } else {
@@ -304,10 +370,13 @@ public class GestorRecetas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinnerCantidad;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldNombIngredientes;
+    private javax.swing.JTextField jTextFieldNombReceta;
     // End of variables declaration//GEN-END:variables
 }

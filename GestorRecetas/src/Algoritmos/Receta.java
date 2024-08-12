@@ -3,10 +3,12 @@ package Algoritmos;
 public class Receta {
     private String nombre;
     private String ingredientes;
+    private Integer cantidad;
 
-    public Receta(String nombre, String ingredientes) {
+    public Receta(String nombre, String ingredientes, Integer cantidad) {
         this.nombre = nombre;
         this.ingredientes = ingredientes;
+        this.cantidad = cantidad;
     }
 
     public String getNombre() {
@@ -15,6 +17,10 @@ public class Receta {
 
     public String getIngredientes() {
         return ingredientes;
+    }
+    
+    public Integer getCantidad(){
+        return cantidad;
     }
 
 
