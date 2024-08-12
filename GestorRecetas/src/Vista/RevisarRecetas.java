@@ -1,16 +1,29 @@
 
 package Vista;
 
+import Algoritmos.ListaRecetas;
+import Algoritmos.MbiSecuencial;
+import Algoritmos.RecetaConstr;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Controlers.DataBInit;
 import Controlers.UserSession;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +38,8 @@ public class RevisarRecetas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         panelRecetas = new JPanel();
         panelRecetas.setBackground(new java.awt.Color(51,51,51));
-        getContentPane().add(panelRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 1000, 400));
+        panelRecetas.setLayout(new FlowLayout(FlowLayout.LEFT, 20,20));
+        getContentPane().add(panelRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 1000, 400));
         loadRecetas();
     }
 
@@ -43,6 +57,8 @@ public class RevisarRecetas extends javax.swing.JFrame {
         jButtonHome = new javax.swing.JButton();
         jButtonMostrarRecetas = new javax.swing.JButton();
         jButtonBuscador = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -70,6 +86,7 @@ public class RevisarRecetas extends javax.swing.JFrame {
             }
         });
 
+        jButtonMostrarRecetas.setBackground(new java.awt.Color(238, 229, 233));
         jButtonMostrarRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/MODIF PROD.png"))); // NOI18N
         jButtonMostrarRecetas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,38 +94,64 @@ public class RevisarRecetas extends javax.swing.JFrame {
             }
         });
 
+        jButtonBuscador.setBackground(new java.awt.Color(124, 124, 124));
         jButtonBuscador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/menu-search-fill.png"))); // NOI18N
+        jButtonBuscador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscadorActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Listar Recetas");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Buscar Receta por nombre");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196)
-                .addComponent(jLabelMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(jButtonBuscador)
-                .addGap(69, 69, 69))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(jButtonMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButtonHome, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabelMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(98, 98, 98)
+                            .addComponent(jButtonMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBuscador)
+                        .addGap(160, 160, 160))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(45, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelMostrarRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonHome)))
+                            .addComponent(jButtonHome))
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBuscador)))
-                .addGap(87, 87, 87)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonMostrarRecetas)
                 .addContainerGap(325, Short.MAX_VALUE))
         );
@@ -130,6 +173,22 @@ public class RevisarRecetas extends javax.swing.JFrame {
     private void jButtonMostrarRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarRecetasActionPerformed
         loadRecetas();
     }//GEN-LAST:event_jButtonMostrarRecetasActionPerformed
+
+    private void jButtonBuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscadorActionPerformed
+        int userId = UserSession.getInstance().getUserId(); // Obtener el userId desde la sesión
+    String nombreBuscado = JOptionPane.showInputDialog(null, "Ingrese el nombre de la receta a buscar:");
+
+    ListaRecetas recetas = MbiSecuencial.obtenerNombresRecetas(userId);
+    
+    int resultado = recetas.busquedaSecuencial(nombreBuscado);
+    
+    if (resultado != -1) {
+        RecetaConstr recetaEncontrada = recetas.get(resultado);
+        mostrarIngredientes(recetaEncontrada.getId());
+    } else {
+        JOptionPane.showMessageDialog(null, "La receta no está en el arreglo.");
+    }
+    }//GEN-LAST:event_jButtonBuscadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +230,8 @@ public class RevisarRecetas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscador;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonMostrarRecetas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelMostrarRecetas;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
@@ -189,28 +250,44 @@ public class RevisarRecetas extends javax.swing.JFrame {
                 String recetaNombre = rs.getString("NombreReceta");
                 int recetaId = rs.getInt("IdReceta");
 
-                // Crear JLabel con imagen
-            JLabel recetaLabel = new JLabel();
-            recetaLabel.setText(recetaNombre);
-            recetaLabel.setHorizontalTextPosition(JLabel.CENTER);
-            recetaLabel.setVerticalTextPosition(JLabel.BOTTOM);
-            recetaLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/timeline-view.png"))); // Ruta relativa a la imagen
-            recetaLabel.setPreferredSize(new java.awt.Dimension(96, 96));
-            
-                recetaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    mostrarIngredientes(recetaId);
-                }
-            });
+                // Crear un panel para cada receta
+                JPanel recetaPanel = new JPanel();
+                recetaPanel.setLayout(new BorderLayout());
+                recetaPanel.setBackground(new java.awt.Color(51, 51, 51)); // Color #333333
 
-                panelRecetas.add(recetaLabel);
+                // Crear un JLabel para la imagen de la receta
+                JLabel recetaLabel = new JLabel();
+                ImageIcon icon = new ImageIcon(getClass().getResource("/Assets/timeline-view.png"));
+                Image scaledImage = icon.getImage().getScaledInstance(96, 96, Image.SCALE_SMOOTH);
+                recetaLabel.setIcon(new ImageIcon(scaledImage));
+                recetaLabel.setPreferredSize(new Dimension(96, 96));
+
+                // Añadir un evento de clic al JLabel
+                recetaLabel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent evt) {
+                        mostrarIngredientes(recetaId);
+                    }
+                });
+
+                // Crear un JLabel para el nombre de la receta
+                JLabel nombreLabel = new JLabel(recetaNombre);
+                nombreLabel.setForeground(Color.WHITE); // Color de texto blanco
+                nombreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+                // Añadir los JLabel al panel de la receta
+                recetaPanel.add(recetaLabel, BorderLayout.CENTER);
+                recetaPanel.add(nombreLabel, BorderLayout.SOUTH);
+
+                // Añadir el panel de la receta al panel principal
+                panelRecetas.add(recetaPanel);
             }
             panelRecetas.revalidate();
             panelRecetas.repaint();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+               
     }
      private void mostrarIngredientes(int recetaId) {
         try (Connection conn = DataBInit.connect()) {
