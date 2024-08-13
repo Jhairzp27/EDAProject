@@ -1,6 +1,5 @@
 package Controlers;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,25 +20,39 @@ public class DataBInit {
             Files.createDirectories(dbDir);
         }
 
-        try (Connection connection = DriverManager.getConnection(DBUsuario)) {
-            executeScript("src/Controlers/Data.sql", connection);
+        try (Connection connection = DriverManager.getConnection(DBUsuario);
+             Statement statement = connection.createStatement()) {
+            
+            // Crear tablas directamente en código Java
+            String createUsersTable = "CREATE TABLE IF NOT EXISTS Users (" +
+                    "IdUser INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "UserName TEXT NOT NULL UNIQUE," +
+                    "Clave TEXT NOT NULL," +
+                    "FechaCreacion DATETIME NOT NULL DEFAULT (DATETIME('NOW', 'LOCALTIME'))" +
+                    ");";
+
+            String createRecetasTable = "CREATE TABLE IF NOT EXISTS Recetas (" +
+                    "IdReceta INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "IdUser INTEGER NOT NULL," +
+                    "NombreReceta TEXT NOT NULL," +
+                    "FOREIGN KEY (IdUser) REFERENCES Users (IdUser)" +
+                    ");";
+
+            String createIngredientesTable = "CREATE TABLE IF NOT EXISTS Ingredientes (" +
+                    "IdIngredientes INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "IdReceta INTEGER NOT NULL," +
+                    "NombreIngrediente TEXT NOT NULL," +
+                    "Cantidad TEXT," +
+                    "FOREIGN KEY (IdReceta) REFERENCES Recetas (IdReceta)" +
+                    ");";
+            
+            // Ejecutar la creación de las tablas
+            statement.execute(createUsersTable);
+            statement.execute(createRecetasTable);
+            statement.execute(createIngredientesTable);
+
         } catch (SQLException e) {
             throw new NewExceptio(e.getMessage(), DataBInit.class.getName(), "initializeDataBase()");
-        }
-    }
-
-    private static void executeScript(String scriptPath, Connection connection) throws Exception {
-        try {
-            Path path = Paths.get(scriptPath);
-            if (!Files.exists(path)) {
-                throw new IOException("El archivo de script no existe: " + scriptPath);
-            }
-            String scriptContent = Files.readString(path);
-            try (Statement statement = connection.createStatement()) {
-                statement.executeUpdate(scriptContent);
-            }
-        } catch (IOException | SQLException e) {
-            throw new NewExceptio(e.getMessage(), DataBInit.class.getName(), "executeScript()");
         }
     }
 

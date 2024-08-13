@@ -1,7 +1,6 @@
 
 package Main;
 import Controlers.DataBInit;
-import Vista.Login;
 import Vista.Splash;
 
 /**
